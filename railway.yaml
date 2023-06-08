@@ -1,0 +1,6 @@
+name: my-railway-app
+env:
+  NODE_ENV: production
+commands:
+  - npm install
+  - npm run start
