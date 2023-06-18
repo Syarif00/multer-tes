@@ -13,19 +13,19 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Sync Files
         uses: Burnett01/rsync-deployments@6.0.0
         with:
         # The switches
-          switches: -avzr --delete --exclude=".git" --exclude=".github"
+          switches: -avzr --delete --exclude=".gitignore" --exclude=".github"
           path: /
           # The remote path
-          remote_path: ${{secrets.DEPLOY_PATH}}
+          remote_path: ${{ secrets.DEPLOY_PATH }}
           # The remote host
-          remote_host: ${{secrets.DEPLOY_HOST}}
+          remote_host: ${{ secrets.DEPLOY_HOST }}
           # The remote user
-          remote_user: ${{secrets.DEPLOY_USER}}
+          remote_user: ${{ secrets.DEPLOY_USER }}
           # The remote key
-          remote_key: ${{secrets.DEPLOY_KEY}}
+          remote_key: ${{ secrets.DEPLOY_KEY }}
