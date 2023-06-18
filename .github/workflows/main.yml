@@ -38,7 +38,7 @@ jobs:
         run: sudo apt-get install -y openssh-client
 
       - name: Deploy via SSH
-        uses: easingthemes/ssh-deploy@2
+        uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           ARGS: "-rlgoDzvc -i --delete"
