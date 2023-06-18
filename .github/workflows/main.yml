@@ -32,13 +32,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 20
+          node-version: 14
 
       - name: Install SSH client
         run: sudo apt-get install -y openssh-client
 
       - name: Deploy via SSH
-        uses: easingthemes/ssh-deploy@main
+        uses: easingthemes/ssh-deploy@2
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           ARGS: "-rlgoDzvc -i --delete"
@@ -47,3 +47,4 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
+          EXCLUDE: "/dist/,/node_modules/"
