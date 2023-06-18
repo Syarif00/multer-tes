@@ -56,6 +56,6 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /path/to/project
+            cd ${{ secrets.REMOTE_TARGET }}
             npm install
             npm start
