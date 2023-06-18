@@ -21,7 +21,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -39,9 +38,12 @@ jobs:
         run: sudo apt-get install -y openssh-client
 
       - name: Deploy via SSH
-        uses: easingthemes/ssh-deploy@v2
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          remote-username: $${{ secrets.REMOTE_USER }}
-          remote-host: ${{ secrets.REMOTE_HOST }}
-          target: ${{ secrets.REMOTE_PATH }}
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc -i --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+          EXCLUDE: "/dist/, /node_modules/"
