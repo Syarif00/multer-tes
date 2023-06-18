@@ -19,7 +19,7 @@ jobs:
         uses: Burnett01/rsync-deployments@6.0.0
         with:
         # The switches
-          switches: -avzr --delete --exclude=".gitignore" --exclude=".github"
+          switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude=".gitignore"
           path: /
           # The remote path
           remote_path: ${{ secrets.DEPLOY_PATH }}
