@@ -6,39 +6,44 @@ on:
       - main
 
 jobs:
-  web-deploy:
-    name: Auto Deploy
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "16"
+          node-version: 20
 
       - name: Install dependencies
         run: npm install
 
-      - name: Sync Files
-        uses: Burnett01/rsync-deployments@6.0.0
+      - name: Build and test
+        run: npm run test
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          # The switches
-          switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude=".gitignore" --exclude="uploads"
-          path: /
-          # The remote path
-          remote_path: /home/u1566631/public_html/test/
-          # The remote host
-          remote_host: ${{ secrets.DEPLOY_HOST }}
-          # The remote user
-          remote_user: ${{ secrets.DEPLOY_USER }}
-          # The remote key
-          remote_key: ${{ secrets.DEPLOY_KEY }}
+          node-version: 20
 
-      - name: Run tests
-        run: npm test
+      - name: Install SSH client
+        run: sudo apt-get install -y openssh-client
 
-      - name: Start Server
-        run: node index.js
+      - name: Deploy via SSH
+        uses: easingthemes/ssh-deploy@v2
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          remote-username: $${{ secrets.REMOTE_USER }}
+          remote-host: ${{ secrets.REMOTE_HOST }}
+          target: ${{ secrets.REMOTE_PATH }}
