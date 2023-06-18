@@ -22,10 +22,10 @@ jobs:
           switches: -avzr --delete --exclude=".git" --exclude=".github"
           path: /
           # The remote path
-          remote_path: /home/u1566631/api-node
+          remote_path: ${{secrets.DEPLOY_PATH}}
           # The remote host
-          remote_host: api.achmadsyarif.com
+          remote_host: ${{secrets.DEPLOY_HOST}}
           # The remote user
-          remote_user: u1566631
+          remote_user: ${{secrets.DEPLOY_USER}}
           # The remote key
           remote_key: ${{secrets.DEPLOY_KEY}}
