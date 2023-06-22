@@ -22,8 +22,9 @@ jobs:
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.REMOTE_PORT }}
         script: |
           cd ${{ secrets.REMOTE_TARGET }}}
-          git pull origin master
-          npm install --production
-          pm2 restart YOUR_APP_NAME
+          git pull origin main
+          npm install 
+          pm2 restart test
