@@ -50,6 +50,8 @@ jobs:
 
       - name: RUN CODE
         run: |
-          git pull 
+          cd ~/home/u1566631/public_html/test
+          git pull origin main
+          git status 
           npm install
-          npm run start
+          pm2 restart test  
