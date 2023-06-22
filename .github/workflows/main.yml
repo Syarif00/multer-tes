@@ -54,4 +54,4 @@ jobs:
           git pull origin main
           git status 
           npm install
-          pm2 restart test  
+          pm2 start npm -- start
