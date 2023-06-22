@@ -51,3 +51,4 @@ jobs:
       - name: RUN CODE
         run: |
           ls
+          pwd
