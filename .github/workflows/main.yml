@@ -53,6 +53,6 @@ jobs:
 
       - name: RUN CODE
         run: |
-          pm2 start index.js --name my-app
+          pm2 start index.js --name test
           pm2 save
-          pm2 restart my-app
+          pm2 restart test  
