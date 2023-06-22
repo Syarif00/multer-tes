@@ -19,7 +19,9 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          cd /home/u1566631/public_html/test  
+          npm install
 
   deploy:
     needs: build
@@ -53,6 +55,5 @@ jobs:
 
       - name: RUN CODE
         run: |
-          pm2 start index.js --name test
-          pm2 save
-          pm2 restart test  
+          cd /home/u1566631/public_html/test
+          pm2 start npm --name "test" -- start
