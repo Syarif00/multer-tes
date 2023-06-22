@@ -50,5 +50,7 @@ jobs:
 
       - name: RUN CODE
         run: |
+          npm install
           ls
           pwd
+          npm run start
