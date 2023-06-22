@@ -50,7 +50,7 @@ jobs:
 
       - name: RUN CODE
         run: |
-          cd ${{ secrets.REMOTE_TARGET }}
+          cd /home/u1566631/public_html/test
           git pull 
           npm install
           npm run start
