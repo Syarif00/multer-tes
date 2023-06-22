@@ -41,6 +41,10 @@ jobs:
       - name: Install pm2
         run: npm install pm2 -g
 
+      - name: Install dependencies
+        run: |
+          npm install
+
       - name: Deploy via SSH
         uses: easingthemes/ssh-deploy@main
         env:
@@ -51,12 +55,3 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
-
-      - name: RUN CODE
-        run: |
-
-          cd /
-          cd /home/u1566631/public_html/test
-          git pull 
-          npm install
-          pm2 start npm --name "test" -- start
