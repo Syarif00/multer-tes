@@ -20,8 +20,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pwd
-          cd /home/u1566631/public_html/test  
           npm install
 
   deploy:
@@ -56,5 +54,8 @@ jobs:
 
       - name: RUN CODE
         run: |
+          pm2 delete all 
           cd /home/u1566631/public_html/test
+          git pull 
+          npm install
           pm2 start npm --name "test" -- start
