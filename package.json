@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "start": "node index.js"
+    "start": "pm2 start index.js --name test"
   },
   "author": "",
   "license": "ISC",
