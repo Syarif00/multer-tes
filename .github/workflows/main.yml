@@ -20,6 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pwd
           cd /home/u1566631/public_html/test  
           npm install
 
