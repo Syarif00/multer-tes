@@ -50,4 +50,4 @@ jobs:
 
       - name: RUN CODE
         run: |
-          npm run start
+          ls
