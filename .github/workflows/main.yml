@@ -37,9 +37,6 @@ jobs:
       - name: Install SSH client
         run: sudo apt-get install -y openssh-client
 
-      - name: Install PM2
-        run: npm install pm2 -g
-
       - name: Deploy via SSH
         uses: easingthemes/ssh-deploy@main
         env:
@@ -50,11 +47,10 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
-          
+
       - name: RUN CODE
         run: |
-          pm2 delete all
           cd ${{ secrets.REMOTE_TARGET }}
           git pull 
           npm install
-          pm2 start npm -- start
+          npm run start
