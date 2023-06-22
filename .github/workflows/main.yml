@@ -55,7 +55,7 @@ jobs:
       - name: RUN CODE
         run: |
 
-          cd ..
+          cd /
           cd /home/u1566631/public_html/test
           git pull 
           npm install
